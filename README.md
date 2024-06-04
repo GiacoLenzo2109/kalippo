@@ -1,4 +1,4 @@
-# kali-setup
+# Kali Setup
 
 ```
 git clone https://github.com/GiacoLenzo2109/kali-setup.git
