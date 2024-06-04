@@ -514,7 +514,7 @@ function install_pivoting() {
     cd $HOME/Tools/Pivoting
 
     # Chisel
-    wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz && gzip -d chisel_1.9.1_linux_amd64.gz && rm chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 & start_spinner "Chisel"
+    wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 && gzip -d chisel_1.9.1_linux_amd64.gz && rm chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 & start_spinner "Chisel"
 }
 
 function run() {
