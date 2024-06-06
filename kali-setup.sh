@@ -331,6 +331,11 @@ function download_tool() {
     wget $2 > /dev/null 2>&1 & start_spinner $tool_name
 }
 
+function clone_tool() {
+    tool_name=$1
+    git clone $2 > /dev/null 2>&1 & start_spinner $tool_name
+}
+
 # Update package lists
 function update_package_lists() {
     echo "Updating package lists..."
@@ -347,7 +352,7 @@ function pipx_install() {
 web_tools=("feroxbuster" "dirsearch" "ffuf" "gobuster" "wpscan" "sqlmap" "burpsuite")
 seclists=("seclists")
 password_cracker_tools=("john" "hashcat" "hydra" "cewl")
-network_tools=("dnsrecon" "enum4linux" "nikto" "bloodhound" "bloodhound.py" "mimikatz" "pypykatz" "crackmapexec" "impacket-scripts" "evil-winrm")
+network_tools=("autorecon" "dnsrecon" "enum4linux" "nikto" "bloodhound" "bloodhound.py" "mimikatz" "pypykatz" "crackmapexec" "impacket-scripts" "evil-winrm")
 
 total_tools=$(( ${#web_tools[@]} + ${#seclists[@]} + ${#password_cracker_tools[@]} + ${#network_tools[@]} + 22))
 current_tool=0
@@ -366,10 +371,6 @@ function install_network_tools() {
     # NmapAutomator
     git clone https://github.com/21y4d/nmapAutomator.git > /dev/null 2>&1
     sudo ln -s $(pwd)/nmapAutomator/nmapAutomator.sh /usr/local/bin/ > /dev/null 2>&1 & start_spinner "nmapAutomator"
-
-    # AutoRecon
-    sudo apt install seclists curl dnsrecon enum4linux feroxbuster gobuster impacket-scripts nbtscan nikto nmap onesixtyone oscanner redis-tools smbclient smbmap snmp sslscan sipvicious tnscmd10g whatweb wkhtmltopdf > /dev/null 2>&1  & start_spinner "AutoRecon Dependencies"
-    install_tool_pipx "AutoRecon" "git+https://github.com/Tib3rius/AutoRecon.git"
 
     folder "Network"
 
@@ -403,8 +404,8 @@ function install_network_tools() {
 function install_web_tools() {
     CURRENT_COLOR=$GREEN
     # Dirbusting Tools
-    echo_bold "[ * ] Web Tools"
-    pip install wfuzz > /dev/null 2>&1 & start_spinner "wfuzz"
+    category "Web Tools"
+    install_tool_pip "wfuzz"
     for tool in "${web_tools[@]}"; do
         install_tool $tool
     done
@@ -413,10 +414,9 @@ function install_web_tools() {
 function install_seclists() {
     CURRENT_COLOR=$YELLOW
     # Seclists 
-    mkdir $HOME/Tools/SecLists > /dev/null 2>&1
-    cd $HOME/Tools/SecLists > /dev/null 2>&1
+    folder "Seclists"
 
-    echo_bold "[ * ] Seclists"
+    category "Seclists"
     for tool in "${seclists[@]}"; do
         install_tool $tool
     done
@@ -425,18 +425,15 @@ function install_seclists() {
 function install_kernel_exploits() {
     CURRENT_COLOR=$BLUE
     # Kernel Exploits
-    mkdir $HOME/Tools/KernelExploits > /dev/null 2>&1
-    cd $HOME/Tools/KernelExploits > /dev/null 2>&1
+    folder "KernelExploits"
 
-    echo_bold "[ * ] Kernel Exploits"
+    category "Kernel Exploits"
 
     # Windows Kernel Exploits
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Windows Kernel Exploits"
-    mkdir $HOME/Tools/KernelExploits/Windows > /dev/null 2>&1
-    cd $HOME/Tools/KernelExploits/Windows > /dev/null 2>&1
+    subcategory "Windows Kernel Exploits"
+    folder "KernelExploits/Windows"
 
-    git clone https://github.com/SecWiki/windows-kernel-exploits.git . > /dev/null 2>&1 & start_spinner "Windows Kernel Exploits"
+    clone_tool "Windows Kernel Exploits" "https://github.com/SecWiki/windows-kernel-exploits.git" 
 
     # Linx Kernel Exploits
     echo_bold "|"
@@ -444,13 +441,13 @@ function install_kernel_exploits() {
     mkdir $HOME/Tools/KernelExploits/Linux > /dev/null 2>&1
     cd $HOME/Tools/KernelExploits/Linux > /dev/null 2>&1
     
-    git clone https://github.com/lucyoa/kernel-exploits.git . > /dev/null 2>&1 & start_spinner "Linux Kernel Exploits"
+    clone_tool "Linux Kernel Exploits" "https://github.com/lucyoa/kernel-exploits.git"
 }
 
 function install_password_crackers() {
     CURRENT_COLOR=$PURPLE
     # Password Crackers
-    echo_bold "[ * ] Password Crackers"
+    category "Password Crackers"
     for tool in "${password_cracker_tools[@]}"; do
         install_tool $tool
     done
@@ -459,52 +456,47 @@ function install_password_crackers() {
 function install_privesc() {
     CURRENT_COLOR=$CYAN
     # Privesc
-    echo_bold "[ * ] Privesc"
-    mkdir $HOME/Tools/Privesc > /dev/null 2>&1
-    cd $HOME/Tools/Privesc > /dev/null 2>&1
+    category "Privesc"
+    folder "Privesc"
 
     # Windows Privesc
-    mkdir $HOME/Tools/Privesc/Windows > /dev/null 2>&1
-    cd $HOME/Tools/Privesc/Windows > /dev/null 2>&1
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Windows Privesc"
+    folder "Privesc/Windows"
+    subcategory "Windows Privesc"
 
-    pip install wesng > /dev/null 2>&1
-    git clone https://github.com/bitsadmin/wesng --depth 1 > /dev/null 2>&1 & start_spinner "Wesng"
+    install_tool_pip "wesng"
 
-    wget https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx64.exe > /dev/null 2>&1
-    wget https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx86.exe > /dev/null 2>&1 & start_spinner "WinPEAS"
 
-    wget  https://raw.githubusercontent.com/411Hall/JAWS/master/jaws-enum.ps1 > /dev/null 2>&1 & start_spinner "JAWS"
+    download_tool "WinPEASx64" "https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx64.exe"
+    download_tool "WinPEASx86" "https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx86.exe"
 
-    wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe > /dev/null 2>&1 & start_spinner "PrintSpoofer64"
-    wget https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip && unzip RoguePotato.zip > /dev/null 2>&1 & start_spinner "RoguePotato"
-    wget https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/SharpEfsPotato.exe > /dev/null 2>&1 & start_spinner "SharpEfsPotato"
-    wget https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/JuicyPotato.exe > /dev/null 2>&1 & start_spinner "JuicyPotato"
-    wget https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/GodPotato.exe > /dev/null 2>&1 & start_spinner "GodPotato"
+    download_tool "JAWS" "https://raw.githubusercontent.com/411Hall/JAWS/master/jaws-enum.ps1"
+
+    subcategory "Windows Token Impersonation - Patatone.exe"
+    download_tool "PrintSpoofer64" "https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe"
+    download_tool "RoguePotato" "https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip" && unzip RoguePotato.zip > /dev/null 2>&1
+    download_tool "SharpEfsPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/SharpEfsPotato.exe"
+    download_tool "JuicyPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/JuicyPotato.exe"
+    download_tool "GodPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/GodPotato.exe"
 
     # Linux Privesc
-    mkdir $HOME/Tools/Privesc/Linux
-    cd $HOME/Tools/Privesc/Linux
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Linux Privesc"
+    folder "Privesc/Linux"
+    subcategory "Linux Privesc"
 
-    wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh > /dev/null 2>&1 & start_spinner "Linxu Exploit Suggester"
+    download_tool "Linxu Exploit Suggester" "https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh"
 
-    wget https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh > /dev/null 2>&1 & start_spinner "LinEnum"
+    download_tool "LinEnum" "https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh"
 
-    wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh > /dev/null 2>&1 & start_spinner "LinPEAS"
+    download_tool "LinPEAS" "https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh" 
 }
 
 function install_pivoting() {
     CURRENT_COLOR=$GREEN
     #Pivoting
-    echo_bold "[ * ] Pivoting"
-    mkdir $HOME/Tools/Pivoting
-    cd $HOME/Tools/Pivoting
+    category "Pivoting"
+    folder "Pivoting"
 
     # Chisel
-    wget https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 && gzip -d chisel_1.9.1_linux_amd64.gz && rm chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 & start_spinner "Chisel"
+    download_tool "Chisel" "https://github.com/jpillora/chisel/releases/download/v1.9.1/chisel_1.9.1_linux_amd64.gz" && gzip -d chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1 && rm chisel_1.9.1_linux_amd64.gz > /dev/null 2>&1
 }
 
 function run() {
