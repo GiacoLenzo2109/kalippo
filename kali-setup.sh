@@ -19,38 +19,6 @@ set_spinner() {
       FRAME=("◐" "◓" "◑" "◒")
       FRAME_INTERVAL=0.5
       ;;
-    spinner4)
-      FRAME=(":(" ":|" ":)" ":D")
-      FRAME_INTERVAL=0.5
-      ;;
-    spinner5)
-      FRAME=("◇" "◈" "◆")
-      FRAME_INTERVAL=0.5
-      ;;
-    spinner6)
-      FRAME=("⚬" "⚭" "⚮" "⚯")
-      FRAME_INTERVAL=0.25
-      ;;
-    spinner7)
-      FRAME=("░" "▒" "▓" "█" "▓" "▒")
-      FRAME_INTERVAL=0.25
-      ;;
-    spinner8)
-      FRAME=("☉" "◎" "◉" "●" "◉")
-      FRAME_INTERVAL=0.1
-      ;;
-    spinner9)
-      FRAME=("❤" "♥" "♡")
-      FRAME_INTERVAL=0.15
-      ;;
-    spinner10)
-      FRAME=("✧" "☆" "★" "✪" "◌" "✲")
-      FRAME_INTERVAL=0.1
-      ;;
-    spinner11)
-      FRAME=("●" "◕" "☯" "◔" "◕")
-      FRAME_INTERVAL=0.25
-      ;;
     *)
       echo "No spinner is defined for $1"
       exit 1
@@ -320,6 +288,15 @@ function echo_bold() {
     echo -e "\e[1;$CURRENT_COLOR$1\e[0m"
 }
 
+function category() {
+    echo_bold "[ * ] $1"
+}
+
+function subcategory() {
+    echo_bold "|"
+    echo_bold "[ * ][ * ] $1"
+}
+
 
 #################################################################### Tools ####################################################################
 
@@ -328,10 +305,30 @@ function setup_env() {
     cd $HOME/Tools > /dev/null 2>&1
 }
 
+function folder() {
+    mkdir $HOME/Tools/$1 > /dev/null 2>&1
+    cd $HOME/Tools/$1 > /dev/null 2>&1
+}
+
 # Function to install a tool
 function install_tool() {
     tool_name=$1
     sudo apt-get install -y $tool_name > /dev/null 2>&1 & start_spinner $tool_name
+}
+
+function install_tool_pip() {
+    tool_name=$1
+    pip install $tool_name > /dev/null 2>&1 & start_spinner $tool_name
+}
+
+function install_tool_pipx() {
+    tool_name=$1
+    pipx install $2 > /dev/null 2>&1 & start_spinner $tool_name
+}
+
+function download_tool() {
+    tool_name=$1
+    wget $2 > /dev/null 2>&1 & start_spinner $tool_name
 }
 
 # Update package lists
@@ -360,13 +357,11 @@ update_package_lists
 function install_network_tools() {
     CURRENT_COLOR=$CYAN
 
-    echo_bold "[ * ] Network Tools"
+    category "Network Tools"
 
     # Recon Tools
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Recon Tools"
-    mkdir $HOME/Tools/Recon > /dev/null 2>&1
-    cd $HOME/Tools/Recon > /dev/null 2>&1
+    subcategory "Recon Tools"
+    folder "Recon"
 
     # NmapAutomator
     git clone https://github.com/21y4d/nmapAutomator.git > /dev/null 2>&1
@@ -374,33 +369,32 @@ function install_network_tools() {
 
     # AutoRecon
     sudo apt install seclists curl dnsrecon enum4linux feroxbuster gobuster impacket-scripts nbtscan nikto nmap onesixtyone oscanner redis-tools smbclient smbmap snmp sslscan sipvicious tnscmd10g whatweb wkhtmltopdf > /dev/null 2>&1  & start_spinner "AutoRecon Dependencies"
-    pipx install git+https://github.com/Tib3rius/AutoRecon.git > /dev/null 2>&1 & start_spinner "AutoRecon"
+    install_tool_pipx "AutoRecon" "git+https://github.com/Tib3rius/AutoRecon.git"
 
-    mkdir $HOME/Tools/Network > /dev/null 2>&1
-    cd $HOME/Tools/Network > /dev/null 2>&1
+    folder "Network"
 
     # Windows AD Tools
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Windows AD Tools"
-    mkdir $HOME/Tools/Network/WindowsAD > /dev/null 2>&1
-    cd $HOME/Tools/Network/WindowsAD > /dev/null 2>&1
+    subcategory "Windows Tools"
+    folder "Network/Windows"
 
-    wget https://raw.githubusercontent.com/ParrotSec/mimikatz/master/x64/mimikatz.exe > /dev/null 2>&1 & start_spinner "Mimikatz"
+    download_tool "PowerSploit" "https://github.com/PowerShellMafia/PowerSploit/archive/refs/tags/v3.0.0.zip"
+    unzip v3.0.0.zip > /dev/null 2>&1
+    rm v3.0.0.zip > /dev/null 2>&1
 
-    wget https://raw.githubusercontent.com/r3motecontrol/Ghostpack-CompiledBinaries/master/Rubeus.exe > /dev/null 2>&1 & start_spinner "Rubeus"
+    download_tool "Mimikatz" "https://raw.githubusercontent.com/ParrotSec/mimikatz/master/x64/mimikatz.exe"
 
-    wget https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.5/LaZagne.exe > /dev/null 2>&1 & start_spinner "LaZagne"
+    download_tool "Rubeus" "https://raw.githubusercontent.com/r3motecontrol/Ghostpack-CompiledBinaries/master/Rubeus.exe"
+
+    download_tool "LaZagne" "https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.5/LaZagne.exe"
 
     # Linux
-    echo_bold "|"
-    echo_bold "[ * ][ * ] Linux Tools"
-    mkdir $HOME/Tools/Network/Linux > /dev/null 2>&1
-    cd $HOME/Tools/Network/Linux > /dev/null 2>&1
+    subcategory "Linux Tools"
+    folder "Network/Linux"
 
     # NetExec
-    pipx ensurepath > /dev/null 2>&1
-    pipx install git+https://github.com/Pennyw0rth/NetExec > /dev/null 2>&1 & start_spinner "NetExec"
+    install_tool_pipx "NetExec" "git+https://github.com/Pennyw0rth/NetExec"
 
+    # Others
     for tool in "${network_tools[@]}"; do
         install_tool $tool
     done
@@ -474,13 +468,9 @@ function install_privesc() {
     cd $HOME/Tools/Privesc/Windows > /dev/null 2>&1
     echo_bold "|"
     echo_bold "[ * ][ * ] Windows Privesc"
-    
-    wget https://github.com/PowerShellMafia/PowerSploit/archive/refs/tags/v3.0.0.zip > /dev/null 2>&1 & start_spinner "PowerSploit"
-    unzip v3.0.0.zip > /dev/null 2>&1
-    rm v3.0.0.zip > /dev/null 2>&1
 
     pip install wesng > /dev/null 2>&1
-    git clone https://github.com/bitsadmin/wesng --depth 1 > /dev/null 2>&1 & start_spinner "PowerSploit"
+    git clone https://github.com/bitsadmin/wesng --depth 1 > /dev/null 2>&1 & start_spinner "Wesng"
 
     wget https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx64.exe > /dev/null 2>&1
     wget https://github.com/peass-ng/PEASS-ng/releases/download/20240602-829055f0/winPEASx86.exe > /dev/null 2>&1 & start_spinner "WinPEAS"
