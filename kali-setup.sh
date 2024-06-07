@@ -25,7 +25,7 @@ source utils/functions/install_kernel_exploits.sh
 source utils/functions/install_privesc.sh
 source utils/functions/install_password_crackers.sh
 source utils/functions/install_pivoting.sh
-source  utils/functions/install_network_tools.sh
+source utils/functions/install_network_tools.sh
 
 ##################################################################### RUN #####################################################################
 
@@ -43,12 +43,12 @@ while [[ "$#" -gt 0 ]]; do
             INSTALL_DIR="$2"
             shift 2
             ;;
-        -c|--category=*)
+        --category=*)
             PACKAGES="${1#*=}"
             verify_packages
             shift
             ;;
-        -c|--category)
+        -c)
             PACKAGES="$2"
             verify_packages
             shift 2
@@ -89,7 +89,7 @@ if [[ ${#PACKAGES_ARRAY[@]} -gt 0 ]]; then
     # done
 fi
 
-# update_package_lists
+update_package_lists
 
 install_packages
 
