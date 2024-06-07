@@ -44,7 +44,7 @@ set_spinner() {
 function start_spinner() {
   local step=0
 
-  tput civis
+  #tput civis
 
     while ps -p "$!" &>/dev/null; do
         echo -ne "\\r[   ] Installing $1..."
@@ -58,5 +58,5 @@ function start_spinner() {
     current_tool=$((current_tool+1))
     draw_progress_bar $current_tool
 
-  tput cnorm
+  #tput cnorm
 }
