@@ -55,4 +55,3 @@ function patatona() {
 
     echo -e "\e[0m"
 }
-}
