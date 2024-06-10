@@ -16,6 +16,7 @@ source utils/banner.sh
 source utils/help.sh
 
 # Functions
+source utils/check_distro.sh
 source utils/check_options.sh
 source utils/functions/generic.sh
 source utils/functions/main.sh
@@ -68,6 +69,8 @@ while [[ "$#" -gt 0 ]]; do
             ;;
     esac
 done
+
+check_distro
 
 verify_packages
 
