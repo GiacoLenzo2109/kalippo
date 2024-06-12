@@ -13,5 +13,4 @@ function check_distro() {
         echo "-> Adding Kali repository"
         echo "deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list.d/kali.list
     fi
-    fi
 }
