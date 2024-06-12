@@ -24,5 +24,7 @@ function install_pivoting() {
     install_ligolo
 
     # Chisel
-    download_tool "Chisel" "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERSION}/chisel_${CHISEL_VERSION}_linux_amd64.gz" && gzip -d chisel_${CHISEL_VERSION}_linux_amd64.gz > /dev/null 2>&1 && rm chisel_${CHISEL_VERSION}_linux_amd64.gz
+    folder "Pivoting/Chisel"
+    download_tool "Chisel Linux" "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERSION}/chisel_${CHISEL_VERSION}_linux_amd64.gz" && gzip -d chisel_${CHISEL_VERSION}_linux_amd64.gz > /dev/null 2>&1 && rm chisel_${CHISEL_VERSION}_linux_amd64.gz
+    download_tool "Chisel Windows" "https://github.com/jpillora/chisel/releases/download/v${CHISEL_VERSION}/chisel_${CHISEL_VERSION}_windows_amd64.gz" && gzip -d chisel_${CHISEL_VERSION}_windows_amd64.gz > /dev/null 2>&1 && rm chisel_${CHISEL_VERSION}_windows_amd64.gz
 }
