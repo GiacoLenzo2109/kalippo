@@ -5,7 +5,7 @@ CHISEL_VERSION="1.9.1"
 
 function install_ligolo() {
     # Ligolo
-    folder Pivoting/Ligolo/Linux
+    folder "Pivoting/Ligolo/Linux"
     download_tool "Ligolo Proxy Linux" "https://github.com/nicocha30/ligolo-ng/releases/download/v${LIGOLO_VERSION}/ligolo-ng_proxy_${LIGOLO_VERSION}_linux_amd64.tar.gz" && tar xvf ligolo-ng_proxy_${LIGOLO_VERSION}_linux_amd64.tar.gz > /dev/null 2>&1 && rm ligolo-ng_proxy_${LIGOLO_VERSION}_linux_amd64.tar.gz
     download_tool "Ligolo Agent Linux" "https://github.com/nicocha30/ligolo-ng/releases/download/v${LIGOLO_VERSION}/ligolo-ng_agent_${LIGOLO_VERSION}_linux_amd64.tar.gz" && tar xvf ligolo-ng_agent_${LIGOLO_VERSION}_linux_amd64.tar.gz > /dev/null 2>&1 && rm ligolo-ng_agent_${LIGOLO_VERSION}_linux_amd64.tar.gz
 

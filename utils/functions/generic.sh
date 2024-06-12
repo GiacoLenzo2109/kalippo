@@ -22,6 +22,6 @@ function setup_env() {
 }
 
 function folder() {
-    mkdir $DIR/$1 > /dev/null 2>&1
+    mkdir -p $DIR/$1 > /dev/null 2>&1
     cd $DIR/$1 > /dev/null 2>&1
 }
