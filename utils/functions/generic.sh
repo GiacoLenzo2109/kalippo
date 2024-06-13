@@ -22,6 +22,8 @@ function setup_env() {
 }
 
 function folder() {
-    mkdir -p $DIR/$1 > /dev/null 2>&1
+    if [ ! -d "$DIR/$1" ]; then
+        mkdir -p "$DIR/$1" > /dev/null 2>&1
+    fi
     cd $DIR/$1 > /dev/null 2>&1
 }
