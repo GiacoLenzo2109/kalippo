@@ -1,18 +1,9 @@
 #!/bin/bash
 
-network_tools=(
-    "autorecon" 
-    "dnsrecon" 
-    "enum4linux" 
-    "nikto" 
-    "bloodhound" 
-    "bloodhound.py" 
-    "mimikatz" 
-    "pypykatz" 
-    "crackmapexec" 
-    "impacket-scripts" 
-    "evil-winrm"
-)
+source ../packages.sh
+
+POWERSPLOIT_VERSION="v3.0.0"
+LAZAGNE_VERSION="v2.4.5"
 
 function nmap_automator() {
     # NmapAutomator
@@ -22,9 +13,9 @@ function nmap_automator() {
 
 function powersploit() {
     # PowerSploit
-    download_tool "PowerSploit" "https://github.com/PowerShellMafia/PowerSploit/archive/refs/tags/v3.0.0.zip"
-    unzip v3.0.0.zip > /dev/null 2>&1
-    rm v3.0.0.zip > /dev/null 2>&1
+    download_tool "PowerSploit" "https://github.com/PowerShellMafia/PowerSploit/archive/refs/tags/${POWERSPLOIT_VERSION}.zip"
+    unzip ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
+    rm ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
 }
 
 
@@ -51,7 +42,7 @@ function install_network_tools() {
 
     download_tool "Rubeus" "https://raw.githubusercontent.com/r3motecontrol/Ghostpack-CompiledBinaries/master/Rubeus.exe"
 
-    download_tool "LaZagne" "https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.5/LaZagne.exe"
+    download_tool "LaZagne" "https://github.com/AlessandroZ/LaZagne/releases/download/${LAZAGNE_VERSION}/LaZagne.exe"
 
     # Linux
     subcategory "Linux Tools"
@@ -59,6 +50,9 @@ function install_network_tools() {
 
     # NetExec
     install_tool_pipx "NetExec" "git+https://github.com/Pennyw0rth/NetExec"
+
+    # Impacket
+    install_tool_pipx "Impacket" "impacket"
 
     # SMBClientNG
     install_tool_pip "smbclientng"

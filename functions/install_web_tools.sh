@@ -1,14 +1,6 @@
 #!/bin/bash
 
-web_tools=(
-    "feroxbuster" 
-    "dirsearch" 
-    "ffuf" 
-    "gobuster" 
-    "wpscan" 
-    "sqlmap" 
-    "burpsuite"
-)
+source ../packages.sh
 
 function install_web_tools() {
     CURRENT_COLOR=$GREEN

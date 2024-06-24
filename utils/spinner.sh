@@ -44,19 +44,15 @@ set_spinner() {
 function start_spinner() {
   local step=0
 
-  #tput civis
-
-    while ps -p "$!" &>/dev/null; do
-        echo -ne "\\r[   ] Installing $1..."
-        for k in "${!FRAME[@]}"; do
+  while ps -p "$!" &>/dev/null; do
+      echo -ne "\\r[   ] Installing $1..."
+      for k in "${!FRAME[@]}"; do
         echo -ne "\\r[ ${FRAME[k]} ]"
         sleep $FRAME_INTERVAL
-        done
-    done
+      done
+  done
 
-    echo -ne "\\r[ ✔ ] Installed $1\\n"
-    current_tool=$((current_tool+1))
-    draw_progress_bar $current_tool
-
-  #tput cnorm
+  echo -ne "\\r[ ✔ ] Installed $1\\n"
+  current_tool=$((current_tool+1))
+  draw_progress_bar $current_tool
 }

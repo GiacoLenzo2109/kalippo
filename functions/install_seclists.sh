@@ -1,8 +1,6 @@
 #!/bin/bash
 
-seclists=(
-    "seclists"
-)
+source ../packages.sh
 
 
 function install_seclists() {
