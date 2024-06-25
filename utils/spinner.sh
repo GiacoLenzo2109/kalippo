@@ -52,7 +52,7 @@ function start_spinner() {
       done
   done
 
-  echo -ne "\\r[ ✔ ] Installed $1\\n"
+  echo -ne "\\r[ ✔ ] Successfully installed $1\\n"
   current_tool=$((current_tool+1))
   draw_progress_bar $current_tool
 }
