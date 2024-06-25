@@ -59,6 +59,11 @@ while [[ "$#" -gt 0 ]]; do
             shift
             ;;
         -c)
+            if [[ -z $2 ]]; then
+                echo "Select at least one category!"
+                show_help
+                exit 1
+            fi
             PACKAGES="$2"
             verify_packages
             shift 2

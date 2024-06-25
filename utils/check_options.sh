@@ -4,19 +4,249 @@
 function verify_packages() {
     valid_categories=("all" "network" "web" "seclists" "kernel-exploits" "privesc" "password-crackers" "pivoting")
     IFS=',' read -r -a PACKAGES_ARRAY <<< "$PACKAGES"
-    for category in "${PACKAGES_ARRAY[@]}"; do
-        if [[ ! " ${valid_categories[*]} " =~ " $category " ]]; then
-            echo "Invalid category: $category"
-            echo "Possible categories: ${valid_categories[*]}"
-            exit 1
-        fi
-    done
 
     if [[ " ${PACKAGES_ARRAY[*]} " =~ " all " ]]; then
       PACKAGES_ARRAY=("all")
-      exit 0
+    else
+      for category in "${PACKAGES_ARRAY[@]}"; do
+          if [[ ! " ${valid_categories[*]} " =~ " $category " ]]; then
+              echo "Invalid category: $category"
+              echo "Possible categories: ${valid_categories[*]}"
+              exit 1
+          fi
+      done
     fi
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Function to print patatona
 function patatona() {
