@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function install_web_tools() {
-    CURRENT_COLOR=$GREEN
+    CURRENT_COLOR=$YELLOW
     # Dirbusting Tools
     category "Web Tools"
     install_tool_pip "wfuzz"

@@ -62,7 +62,7 @@ function install_packages() {
                 install_privesc
                 install_password_crackers
                 install_pivoting
-                total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_cracker_tools[@]} + 1))
+                total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_cracker_tools[@]} + 2))
                 ;;
             "network")
                 install_network_tools
@@ -90,7 +90,7 @@ function install_packages() {
                 ;;
             "pivoting")
                 install_pivoting
-                total_tools=$(( ${total_tools} + 1))
+                total_tools=$(( ${total_tools} + 2))
                 ;;
             *)
                 echo "Unknown category: $package"

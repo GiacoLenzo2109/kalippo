@@ -3,7 +3,7 @@
 PSPY_VERSION="1.2.1"
 
 function install_privesc() {
-    CURRENT_COLOR=$CYAN
+    CURRENT_COLOR=$ORANGE
     # Privesc
     category "Privesc"
     folder "Privesc"
@@ -42,5 +42,5 @@ function install_privesc() {
     download_tool "LinEnum" "https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh"
     download_tool "LinPEAS" "https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh"
 
-    download  "pspy64" "https://github.com/DominicBreuker/pspy/releases/download/v${PSPY_VERSION}/pspy64"
+    download_tool  "pspy64" "https://github.com/DominicBreuker/pspy/releases/download/v${PSPY_VERSION}/pspy64"
 }

@@ -7,6 +7,7 @@ function echo_bold() {
 }
 
 function category() {
+    echo_bold ""
     echo_bold "[ * ] $1"
 }
 

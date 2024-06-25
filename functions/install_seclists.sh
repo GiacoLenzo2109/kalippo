@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function install_seclists() {
-    CURRENT_COLOR=$YELLOW
+    CURRENT_COLOR=$BLUE
     # Seclists 
     folder "Seclists"
 

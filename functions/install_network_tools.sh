@@ -16,6 +16,16 @@ function powersploit() {
     # rm ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
 }
 
+function impacket() {
+    if dpkg -s impacket-scripts | grep "not installed" &> /dev/null; then
+        echo "Impacket is already installed. Do you want to uninstall it and proceed installing git version? (Y/N)"
+        read answer
+        if [ "$answer" == "y" ]; then
+            sudo apt remove impacket-scripts
+        fi
+    fi
+    install_tool_pipx "Impacket" "impacket"
+
 
 function install_network_tools() {
     CURRENT_COLOR=$CYAN
@@ -50,7 +60,7 @@ function install_network_tools() {
     install_tool_pipx "NetExec" "git+https://github.com/Pennyw0rth/NetExec"
 
     # Impacket
-    install_tool_pipx "Impacket" "impacket"
+    impacket
 
     # SMBClientNG
     install_tool_pip "smbclientng"
