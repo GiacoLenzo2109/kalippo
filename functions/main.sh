@@ -39,7 +39,7 @@ function clone_tool() {
 # Update package lists
 function update_package_lists() {
     echo "Updating package lists..."
-    sudo apt-get update > /dev/null 2>&1
+    sudo apt-get update
 }
 
 function pipx_install() {
