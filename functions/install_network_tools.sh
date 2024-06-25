@@ -25,6 +25,7 @@ function impacket() {
         fi
     fi
     install_tool_pipx "Impacket" "impacket"
+}
 
 
 function install_network_tools() {
