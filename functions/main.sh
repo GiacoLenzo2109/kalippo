@@ -54,6 +54,16 @@ function install_packages() {
     
     for package in "${PACKAGES[@]}"; do
         case $package in
+            "all")
+                install_network_tools
+                install_web_tools
+                install_seclists
+                install_kernel_exploits
+                install_privesc
+                install_password_crackers
+                install_pivoting
+                total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_cracker_tools[@]} + 1))
+                ;;
             "network")
                 install_network_tools
                 total_tools=$(( ${total_tools} + ${#network_tools[@]}))

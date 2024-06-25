@@ -35,6 +35,13 @@ source packages.sh
 set_spinner "spinner1"
 show_banner
 
+# If no arguments were passed, print help
+if [[ "$#" -eq 0 ]]; then
+    show_help
+    exit 0
+fi
+
+
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -55,6 +62,11 @@ while [[ "$#" -gt 0 ]]; do
             PACKAGES="$2"
             verify_packages
             shift 2
+            ;;
+        -a|--all)
+            PACKAGES="all"
+            verify_packages
+            shift
             ;;
         -P|--patatona)
             patatona
