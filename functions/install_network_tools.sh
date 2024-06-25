@@ -11,9 +11,9 @@ function nmap_automator() {
 
 function powersploit() {
     # PowerSploit
-    download_tool "PowerSploit" "https://github.com/PowerShellMafia/PowerSploit/archive/refs/tags/${POWERSPLOIT_VERSION}.zip"
-    unzip ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
-    rm ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
+    download_tool "PowerSploit" "https://github.com/PowerShellMafia/PowerSploit/raw/master/Recon/PowerView.ps1"
+    # unzip ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
+    # rm ${POWERSPLOIT_VERSION}.zip > /dev/null 2>&1
 }
 
 
