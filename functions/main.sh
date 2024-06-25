@@ -6,7 +6,7 @@ source functions/install_kernel_exploits.sh
 source functions/install_privesc.sh
 source functions/install_password_crackers.sh
 source functions/install_pivoting.sh
-source  functions/install_network_tools.sh
+source functions/install_network_tools.sh
 
 #################################################################### Tools ####################################################################
 
