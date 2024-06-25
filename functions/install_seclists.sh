@@ -1,8 +1,5 @@
 #!/bin/bash
 
-source ../packages.sh
-
-
 function install_seclists() {
     CURRENT_COLOR=$YELLOW
     # Seclists 

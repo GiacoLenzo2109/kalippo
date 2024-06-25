@@ -1,9 +1,9 @@
 #!/bin/bash
 
 function check_distro() {
-    if not which apt &> /dev/null; then
-        echo "You are not using a supported Distro."
-        echo "Download Kali Linux from https://www.kali.org/downloads/"
+    if ! which apt &> /dev/null; then
+        echo "You are not using a supported Debian-based distribution."
+        echo "Your current distribution is $(head /etc/os-release -n 1 | awk -F '\"' '{ print $2 }' | sed 's/\"//g')"
         echo ""
         echo "Exiting..."
         exit 0

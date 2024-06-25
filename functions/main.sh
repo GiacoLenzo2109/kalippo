@@ -1,12 +1,12 @@
 #!/bin/bash
 
-source utils/functions/install_web_tools.sh
-source utils/functions/install_seclists.sh
-source utils/functions/install_kernel_exploits.sh
-source utils/functions/install_privesc.sh
-source utils/functions/install_password_crackers.sh
-source utils/functions/install_pivoting.sh
-source  utils/functions/install_network_tools.sh
+source functions/install_web_tools.sh
+source functions/install_seclists.sh
+source functions/install_kernel_exploits.sh
+source functions/install_privesc.sh
+source functions/install_password_crackers.sh
+source functions/install_pivoting.sh
+source  functions/install_network_tools.sh
 
 #################################################################### Tools ####################################################################
 
@@ -92,4 +92,16 @@ function install_packages() {
     
     echo "Total tools: $total_tools"
     exit 0
+}
+
+
+############################################################################## ALIAS ##############################################################################
+
+function install_aliases() {
+    echo "Do you want to install the aliases? [Y/N]"
+    read answer
+    if [ "$answer" != "${answer#[Yy]}" ] ;then
+        alias pyserver="python3 -m http.server $1"
+        alias cme="crackmapexec"
+    fi
 }

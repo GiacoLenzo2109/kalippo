@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ../packages.sh
-
 POWERSPLOIT_VERSION="v3.0.0"
 LAZAGNE_VERSION="v2.4.5"
 

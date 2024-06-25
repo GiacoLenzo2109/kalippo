@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source utils/colors.sh
-source utils/functions/generic.sh
+source functions/generic.sh
 
 function show_banner() {
     RANDOM_COLOR=$(shuf -i 1-7 -n 1)

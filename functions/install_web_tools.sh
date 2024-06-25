@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ../packages.sh
-
 function install_web_tools() {
     CURRENT_COLOR=$GREEN
     # Dirbusting Tools

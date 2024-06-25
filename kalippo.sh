@@ -28,6 +28,8 @@ source functions/install_password_crackers.sh
 source functions/install_pivoting.sh
 source functions/install_network_tools.sh
 
+source packages.sh
+
 ##################################################################### RUN #####################################################################
 
 set_spinner "spinner1"
@@ -100,3 +102,6 @@ install_packages
 # Clear loading bar
 echo -ne "\r$(tput el)"
 echo "All tools installed successfully!"
+
+
+install_aliases
