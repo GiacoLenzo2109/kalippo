@@ -64,7 +64,12 @@ function install_packages() {
                 install_privesc
                 install_password_tools
                 install_tunneling
+                install_windows_ad_tools
                 total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_tools[@]} + 2))
+                ;;
+            "ad")
+                install_windows_ad_tools
+                total_tools=$(( ${total_tools} + 3))
                 ;;
             "network")
                 install_network_tools

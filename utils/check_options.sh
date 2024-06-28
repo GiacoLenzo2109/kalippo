@@ -2,7 +2,7 @@
 
 # Function to verify and convert packages to array
 function verify_packages() {
-    valid_categories=("all" "network" "web" "seclists" "kernel-exploits" "privesc" "password-crackers" "tunneling")
+    valid_categories=("all" "ad" "network" "web" "seclists" "kernel-exploits" "privesc" "password-crackers" "tunneling")
     IFS=',' read -r -a PACKAGES_ARRAY <<< "$PACKAGES"
 
     if [[ " ${PACKAGES_ARRAY[*]} " =~ " all " ]]; then
