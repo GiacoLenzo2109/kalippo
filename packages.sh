@@ -15,10 +15,9 @@ network_tools=(
     "evil-winrm"
 )
 
-password_cracker_tools=(
+password_tools=(
     "john" 
     "hashcat" 
-    "hydra" 
     "cewl"
 )
 

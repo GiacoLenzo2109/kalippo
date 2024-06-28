@@ -2,6 +2,8 @@
 
 PSPY_VERSION="1.2.1"
 
+LAZAGNE_VERSION="v2.4.5"
+
 function install_privesc() {
     CURRENT_COLOR=$ORANGE
     # Privesc
@@ -23,6 +25,8 @@ function install_privesc() {
     download_tool "PowerUp" "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1"
     download_tool "PowerUpSQL" "https://raw.githubusercontent.com/NetSPI/PowerUpSQL/master/PowerUpSQL.ps1"
     download_tool "SharpUp" "https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/raw/master/SharpUp.exe"
+
+    download_tool "LaZagne" "https://github.com/AlessandroZ/LaZagne/releases/download/${LAZAGNE_VERSION}/LaZagne.exe"
 
     subcategory "Windows Token Impersonation - Patatone.exe"
     download_tool "PrintSpoofer64" "https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe"

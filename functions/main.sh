@@ -60,9 +60,9 @@ function install_packages() {
                 install_seclists
                 install_kernel_exploits
                 install_privesc
-                install_password_crackers
+                install_password_tools
                 install_pivoting
-                total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_cracker_tools[@]} + 2))
+                total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_tools[@]} + 2))
                 ;;
             "network")
                 install_network_tools
@@ -85,8 +85,8 @@ function install_packages() {
                 total_tools=$(( ${total_tools} + 12))
                 ;;
             "password-crackers")
-                install_password_crackers
-                total_tools=$(( ${total_tools} + ${#password_cracker_tools[@]}))
+                install_password_tools
+                total_tools=$(( ${total_tools} + ${#password_tools[@]}))
                 ;;
             "pivoting")
                 install_pivoting
