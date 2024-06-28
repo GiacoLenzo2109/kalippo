@@ -51,6 +51,8 @@ function pipx_install() {
 function install_packages() {
     total_tools=0
     current_tool=0
+
+    pipx_install
     
     for package in "${PACKAGES[@]}"; do
         case $package in
