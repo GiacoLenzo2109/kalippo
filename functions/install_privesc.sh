@@ -30,7 +30,7 @@ function install_privesc() {
 
     subcategory "Windows Token Impersonation - Patatone.exe"
     download_tool "PrintSpoofer64" "https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe"
-    download_tool "RoguePotato" "https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip" && unzip RoguePotato.zip > /dev/null 2>&1
+    download_tool "RoguePotato" "https://github.com/antonioCoco/RoguePotato/releases/download/1.0/RoguePotato.zip" && unzip -o RoguePotato.zip > /dev/null 2>&1 && rm RoguePotato.zip
     download_tool "SharpEfsPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/SharpEfsPotato.exe"
     download_tool "JuicyPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/JuicyPotato.exe"
     download_tool "GodPotato" "https://github.com/jakobfriedl/precompiled-binaries/raw/main/Token/GodPotato.exe"
