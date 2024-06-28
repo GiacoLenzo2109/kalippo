@@ -7,14 +7,16 @@ function install_nmap_automator() {
 }
 
 function install_impacket() {
-    if dpkg -s impacket-scripts | grep "not installed" &> /dev/null; then
+    if dpkg -s impacket-scripts | grep "ok installed" &> /dev/null; then
         echo "Impacket is already installed. Do you want to uninstall it and proceed installing git version? (Y/N)"
         read answer
         if [ "$answer" == "y" ]; then
             sudo apt remove impacket-scripts
+            install_tool_pipx "Impacket" "impacket"
         fi
+    else
+        install_tool_pipx "Impacket" "impacket"
     fi
-    install_tool_pipx "Impacket" "impacket"
 }
 
 
