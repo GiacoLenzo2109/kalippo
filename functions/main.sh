@@ -5,7 +5,7 @@ source functions/install_seclists.sh
 source functions/install_kernel_exploits.sh
 source functions/install_privesc.sh
 source functions/install_password_crackers.sh
-source functions/install_pivoting.sh
+source functions/install_tunneling.sh
 source functions/install_network_tools.sh
 
 #################################################################### Tools ####################################################################
@@ -63,7 +63,7 @@ function install_packages() {
                 install_kernel_exploits
                 install_privesc
                 install_password_tools
-                install_pivoting
+                install_tunneling
                 total_tools=$(( ${#network_tools[@]} + ${#web_tools[@]} + ${#seclists[@]} + 2 + 12 + ${#password_tools[@]} + 2))
                 ;;
             "network")
@@ -90,8 +90,8 @@ function install_packages() {
                 install_password_tools
                 total_tools=$(( ${total_tools} + ${#password_tools[@]}))
                 ;;
-            "pivoting")
-                install_pivoting
+            "tunneling")
+                install_tunneling
                 total_tools=$(( ${total_tools} + 2))
                 ;;
             *)
