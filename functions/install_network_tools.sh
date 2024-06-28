@@ -28,7 +28,7 @@ function install_network_tools() {
     install_nmap_automator
 
     # NetExec
-    install_tool_pipx "NetExec" "git+https://github.com/Pennyw0rth/NetExec"
+    # install_tool_pipx "NetExec" "git+https://github.com/Pennyw0rth/NetExec"
 
     # Impacket
     install_impacket
