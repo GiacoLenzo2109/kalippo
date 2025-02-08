@@ -1,9 +1,9 @@
 # Kali Setup
 
 ```
-git clone https://github.com/GiacoLenzo2109/kali-setup.git
-cd kali-setup
-chmod +x ./kali-setup.sh
+git clone https://github.com/GiacoLenzo2109/kalippo.git
+cd kalippo
+chmod +x ./kalippo.sh
 
-./kali-setup.sh
+./kalippo.sh
 ```
