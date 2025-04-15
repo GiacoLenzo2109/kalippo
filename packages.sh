@@ -36,3 +36,7 @@ web_tools=(
     "burpsuite"
     "wpscan"
 )
+
+proxy_tools=(
+    "caido" 
+)
