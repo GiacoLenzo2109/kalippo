@@ -19,7 +19,7 @@ function install_tool() {
 
 function install_tool_pip() {
     tool_name=$1
-    pip install $tool_name > /dev/null 2>&1 & start_spinner $tool_name
+    pip install $tool_name --break-system-packages > /dev/null 2>&1 & start_spinner $tool_name
 }
 
 function install_tool_pipx() {
